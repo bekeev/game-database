@@ -5,7 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 import { fetchGenres } from '../../../api-service/fetchGenres';
 import { fetchPlatforms } from '../../../api-service/fetchPlatforms';
 import { fetchPublishers } from '../../../api-service/fetchPublishers';
-import { SelectKeys, useSelectStore } from '../../../pages/Games';
+import { SelectKeys, useSelectStore } from '../../../pages/GamesPage';
 
 const Container = styled.div`
     display: flex;
@@ -13,7 +13,7 @@ const Container = styled.div`
     width: 60vw;
 `;
 
-export const TableFilter: React.FC = () => {
+export const GamesTableFilter: React.FC = () => {
     const { genreID, platformId, publisherId, setSelectValue } =
         useSelectStore();
 

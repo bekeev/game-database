@@ -13,6 +13,15 @@ export const Navbar: React.FC = () => {
                     <Nav.Link as={NavLink} to="games">
                         Игры
                     </Nav.Link>
+                    <Nav.Link as={NavLink} to="genres">
+                        Жанры
+                    </Nav.Link>
+                    <Nav.Link as={NavLink} to="platforms">
+                        Платформы
+                    </Nav.Link>
+                    <Nav.Link as={NavLink} to="publishers">
+                        Издатели
+                    </Nav.Link>
                     <Nav.Link as={NavLink} to="contacts">
                         Контакты
                     </Nav.Link>

@@ -1,14 +1,8 @@
 import React from 'react';
 import { Placeholder, Table as BootstrapTable } from 'react-bootstrap';
-import { TableFilter } from './TableFilter/TableFilter';
 import styled from 'styled-components';
 
-const Container = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    padding: 24px;
-`;
+const Container = styled.div``;
 
 type TProps = {
     headRow: React.ReactNode;
@@ -36,10 +30,5 @@ export const Table: React.FC<TProps> = ({ headRow, tableData, isLoading }) => {
         );
     };
 
-    return (
-        <Container>
-            <TableFilter />
-            {renderTable()}
-        </Container>
-    );
+    return <Container>{renderTable()}</Container>;
 };

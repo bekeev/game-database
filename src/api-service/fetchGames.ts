@@ -2,7 +2,7 @@ import { fetchUrlWithToken, RawgResponse } from './api';
 import { Platform } from './fetchPlatforms';
 import { Genre } from './fetchGenres';
 import { Publisher } from './fetchPublishers';
-import { TSelectState } from '../pages/Games';
+import { TSelectState } from '../pages/GamesPage';
 
 export type Game = {
     id: number;

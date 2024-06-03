@@ -1,12 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { useQuery } from '@tanstack/react-query';
-import { fetchGames } from '../api-service/fetchGames';
-import { Table } from '../components/Table/Table';
 import moment from 'moment';
 import { create } from 'zustand';
+import { toast } from 'react-toastify';
 
-const Container = styled.div``;
+import { GamesTableFilter } from '../components/Table/GamesTableFilter/GamesTableFilter';
+import { Table } from '../components/Table/Table';
+import { fetchGames } from '../api-service/fetchGames';
+
+const Container = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin: 24px;
+`;
 
 export enum SelectKeys {
     GENRE_ID = 'genreID',
@@ -33,9 +41,9 @@ export const useSelectStore = create<
         })),
 }));
 
-export const Games: React.FC = () => {
+export const GamesPage: React.FC = () => {
     const { genreID, platformId, publisherId } = useSelectStore();
-    const { data, isFetching, isError } = useQuery({
+    const { data, isFetching, isError, isSuccess } = useQuery({
         queryKey: ['games', genreID, platformId, publisherId],
         queryFn: fetchGames({
             [SelectKeys.GENRE_ID]: genreID,
@@ -44,8 +52,17 @@ export const Games: React.FC = () => {
         }),
     });
 
+    useEffect(() => {
+        if (isSuccess) {
+            toast.success('Запрос выполнен успешно', {
+                autoClose: 2000,
+            });
+        }
+    }, [isSuccess]);
+
     return (
         <Container>
+            <GamesTableFilter />
             <Table
                 headRow={
                     <tr>
@@ -61,7 +78,11 @@ export const Games: React.FC = () => {
                             <tr>
                                 <td>{item.id}</td>
                                 <td>{item.name}</td>
-                                <td>{moment(item.released).format('dddd')}</td>
+                                <td>
+                                    {moment(item.released).format(
+                                        'Do MMMM YYYY'
+                                    )}
+                                </td>
                                 <td>{item.metacritic}</td>
                             </tr>
                         ))}
