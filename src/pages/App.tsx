@@ -38,6 +38,7 @@ export const App: React.FC = () => {
                         <Alert variant="danger">Страница не найдена</Alert>
                     }
                 />
+                <Route path="/game-database" element={<MainPage />} />
                 <Route
                     path="*"
                     element={<Navigate to="/not-found-404" replace />}
